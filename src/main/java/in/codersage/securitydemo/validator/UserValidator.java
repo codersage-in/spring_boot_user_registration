@@ -1,5 +1,7 @@
-package in.codersage.securitydemo;
+package in.codersage.securitydemo.validator;
 
+import in.codersage.securitydemo.model.User;
+import in.codersage.securitydemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -11,7 +13,6 @@ public class UserValidator implements Validator {
     @Autowired
     UserService userService;
 
-
     @Override
     public boolean supports(Class<?> clazz) {
         return User.class.equals((clazz));
@@ -20,7 +21,6 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         User user = (User) target;
-
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
         if(user.getUsername().length()<6 || user.getUsername().length()>32){
             errors.rejectValue("username", "Size.userForm.username");
@@ -28,6 +28,5 @@ public class UserValidator implements Validator {
         if(userService.findUserByName(user.getUsername())!= null){
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
-
     }
 }

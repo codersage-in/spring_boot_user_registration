@@ -38,16 +38,12 @@
                 <!-- Login Form -->
                 <form:form action="${pageContext.request.contextPath}/registration"
                            method="POST" modelAttribute="userForm" class="form-horizontal">
-
                     <!-- Place for messages: error, alert etc ... -->
                     <div class="form-group">
                         <div class="col-xs-15">
                             <div>
-
                                 <!-- Check for login error -->
-
                                 <c:if test="${param.error != null}">
-
                                     <div class="alert alert-danger col-xs-offset-1 col-xs-10">
                                         Invalid username and password.
                                     </div>
@@ -83,6 +79,15 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 
                         <input type="password" name="cnfpassword" placeholder="confirm password" class="form-control" >
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <input type="radio" id="admin" name="roles" value="admin">
+                        <label for="admin">&nbsp;&nbsp;Admin</label><br>
+                        <input type="radio" id="instructor" name="roles" value="instructor">
+                        <label for="instructor">&nbsp;&nbsp;Instructor</label><br>
+                        <input type="radio" id="student" name="roles" value="student">
+                        <label for="student">&nbsp;&nbsp;Student</label>
                     </div>
 
                     <!-- Login/Submit Button -->

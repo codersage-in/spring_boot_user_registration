@@ -1,5 +1,6 @@
-package in.codersage.securitydemo;
+package in.codersage.securitydemo.repository;
 
+import in.codersage.securitydemo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

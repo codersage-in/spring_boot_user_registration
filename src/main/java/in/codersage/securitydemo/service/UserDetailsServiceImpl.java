@@ -1,5 +1,8 @@
-package in.codersage.securitydemo;
+package in.codersage.securitydemo.service;
 
+import in.codersage.securitydemo.model.Role;
+import in.codersage.securitydemo.model.User;
+import in.codersage.securitydemo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,7 +30,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         for(Role role : user.getRoles()){
             roles.add(new SimpleGrantedAuthority(role.getName()));
         }
-        UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),roles);
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getUsername(),
+                user.getPassword(),roles);
         return userDetails;
     }
 }
